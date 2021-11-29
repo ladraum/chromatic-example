@@ -9,6 +9,12 @@ pipeline {
         disableConcurrentBuilds()
     }
     stages {
+        stage('Install Dependencies') {
+            steps {
+              sh "curl -sL https://deb.nodesource.com/setup_12.x | sudo -E bash -"
+              sh "sudo apt install nodejs"
+            }
+        }
         stage('Install') {
             steps {
               sh "npm install"
