@@ -1,19 +1,12 @@
 pipeline {
     agent {
-        node {
-            label 'master'
-        }
+        docker { image 'node:17' }
     }
     options {
         buildDiscarder(logRotator(numToKeepStr: '5', daysToKeepStr: '1'))
         disableConcurrentBuilds()
     }
     stages {
-        stage('Install Dependencies') {
-            steps {
-              sh "sudo apt-get install nodejs"
-            }
-        }
         stage('Install') {
             steps {
               sh "npm install"
